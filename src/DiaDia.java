@@ -53,7 +53,10 @@ public class DiaDia {
 	 */
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
-
+		if(comandoDaEseguire.getNome() == null) {
+			System.out.println("inserire un comando");
+			return this.partita.isFinita();
+		}
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
 		} else if (comandoDaEseguire.getNome().equals("vai"))
