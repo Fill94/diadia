@@ -56,7 +56,6 @@ public class DiaDia {
 
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
-			return true;
 		} else if (comandoDaEseguire.getNome().equals("vai"))
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
@@ -65,9 +64,11 @@ public class DiaDia {
 			System.out.println("Comando sconosciuto");
 		if (this.partita.vinta()) {
 			System.out.println("Hai vinto!");
-			return true;
-		} else
-			return false;
+		} 
+		if(this.partita.getCfu()== 0) {
+			System.out.println("cfu esauriti, GAME OVER");
+		}
+		return this.partita.isFinita();
 	}   
 
 	// implementazioni dei comandi dell'utente:
@@ -94,8 +95,8 @@ public class DiaDia {
 			System.out.println("Direzione inesistente");
 		else {
 			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getCfu();
-			this.partita.setCfu(cfu--);
+			int cfu = this.partita.getCfu()-1;
+			this.partita.setCfu(cfu);
 		}
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
@@ -104,6 +105,7 @@ public class DiaDia {
 	 * Comando "Fine".
 	 */
 	private void fine() {
+		this.partita.setFinita();
 		System.out.println("Grazie di aver giocato!");  // si desidera smettere
 	}
 
