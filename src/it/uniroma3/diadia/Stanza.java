@@ -57,6 +57,13 @@ public class Stanza {
     		    this.numeroStanzeAdiacenti++;
     		}
     }
+    /**
+     * Utility method per il testing 
+     * @return
+     */
+    public int  getNumeroStanzeAdiacenti() {
+		return this.numeroStanzeAdiacenti;
+	}
 
     /**
      * Restituisce la stanza adiacente nella direzione specificata
