@@ -68,7 +68,7 @@ public class DiaDia {
 		if (this.partita.vinta()) {
 			System.out.println("Hai vinto!");
 		} 
-		if(this.partita.getCfu()== 0) {
+		if(this.partita.getGiocatore().getCfu()== 0) {
 			System.out.println("cfu esauriti, GAME OVER");
 		}
 		return this.partita.isFinita();
@@ -98,8 +98,8 @@ public class DiaDia {
 			System.out.println("Direzione inesistente");
 		else {
 			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getCfu()-1;
-			this.partita.setCfu(cfu);
+			int cfu = this.partita.getGiocatore().getCfu()-1;
+			this.partita.getGiocatore().setCfu(cfu);
 		}
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
