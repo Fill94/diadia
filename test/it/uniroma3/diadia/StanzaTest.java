@@ -104,8 +104,11 @@ public class StanzaTest {
 		assertSame(this.attrezzoTest, this.stanzatest.getAttrezzo("attrezzoTest"));
 	}
 	@Test
-	public void testRemoveAttrezzo() {
-		fail("Not yet implemented");
+	public void testRemoveAttrezzoUnAttrezzoNellaStanza() {
+		this.stanzatest.addAttrezzo(attrezzoTest);
+		assertEquals(1, this.stanzatest.getNumeroAttrezzi());
+		assertTrue(this.stanzatest.removeAttrezzo(attrezzoTest));
+		assertEquals(0, this.stanzatest.getNumeroAttrezzi());
 	}
 
 }

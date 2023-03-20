@@ -5,12 +5,12 @@ public class Labirinto {
 	private Stanza stanzaIniziale;
 	
 	public Labirinto() {
-		this.creaStanze();
+		this.init();
 	}
 	 /**
      * Crea tutte le stanze e le porte di collegamento
      */
-    private void creaStanze() {
+    private void init() {
 
 		/* crea gli attrezzi */
     	Attrezzo lanterna = new Attrezzo("lanterna",3);
