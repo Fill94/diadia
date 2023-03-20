@@ -71,14 +71,25 @@ public class BorsaTest {
 		assertTrue(this.borsaTest.isEmpty());
 	}
 	@Test
-	public void testRemoveAttrezzoDueAttrezzi() {
+	public void testRemoveAttrezzoDueAttrezziNellaBorsa() {
 		this.borsaTest.addAttrezzo(attrezzoTest);
 		this.borsaTest.addAttrezzo(new Attrezzo("attrezzoTest2", 2));
 		assertTrue(this.borsaTest.hasAttrezzo("attrezzoTest"));
 		assertSame(attrezzoTest, this.borsaTest.removeAttrezzo("attrezzoTest"));
 		assertEquals(2, this.borsaTest.getPeso());
 		assertFalse(this.borsaTest.hasAttrezzo("attrezzoTest"));
-		
+	}
+	@Test 
+	public void testRemoveDueAttrezziDueAttrezziNellaBorsa() {
+		Attrezzo attrezzoTest2 = new Attrezzo("attrezzoTest2", 2);
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		this.borsaTest.addAttrezzo(attrezzoTest2);
+		assertFalse(this.borsaTest.isEmpty());
+		assertSame(attrezzoTest2, this.borsaTest.removeAttrezzo("attrezzoTest2"));
+		assertEquals(1, this.borsaTest.getPeso());
+		assertSame(attrezzoTest, this.borsaTest.removeAttrezzo("attrezzoTest"));
+		assertEquals(0, this.borsaTest.getPeso());
+		assertTrue(this.borsaTest.isEmpty());
 	}
 
 }
