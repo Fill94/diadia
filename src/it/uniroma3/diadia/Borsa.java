@@ -49,6 +49,23 @@ public class Borsa {
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		// ---> TODO (implementare questo metodo) <---
+		if(this.hasAttrezzo(nomeAttrezzo)) {
+			a = this.getAttrezzo(nomeAttrezzo);
+			//cerco l'indice di a nell'array delgi attrezzi
+			int index = 0;
+			for(int i = 0 ; i < numeroAttrezzi ; i++) {
+				if(this.attrezzi[i] == a) {
+					index = i;
+					break;
+				}
+			}
+			for(int i = index ; i < numeroAttrezzi ; i++) {
+				if(i < numeroAttrezzi-1)
+					this.attrezzi[i] = this.attrezzi[i+1];
+			}
+			this.attrezzi[attrezzi.length -1] = null;
+			this.numeroAttrezzi--;
+		}
 		return a;
 	}
 	public String toString() {
