@@ -198,7 +198,7 @@ public class Stanza {
 					this.attrezzi[i] = this.attrezzi[i+1];
 				}
 			}
-			this.attrezzi[numeroAttrezzi] = null;
+			this.attrezzi[numeroAttrezzi-1] = null;
 			numeroAttrezzi--;
 			return true;
 		}

@@ -109,6 +109,18 @@ public class StanzaTest {
 		assertEquals(1, this.stanzatest.getNumeroAttrezzi());
 		assertTrue(this.stanzatest.removeAttrezzo(attrezzoTest));
 		assertEquals(0, this.stanzatest.getNumeroAttrezzi());
+		assertFalse(this.stanzatest.hasAttrezzo("attrezzoTest"));
 	}
+	@Test
+	public void testRemovePrimoAttrezzoDueAttrezzoNellaStanza() {
+		this.stanzatest.addAttrezzo(attrezzoTest);
+		Attrezzo attrezzoTest2 = new Attrezzo("attrezzoTest2", 1);
+		this.stanzatest.addAttrezzo(attrezzoTest2);
+		assertEquals(2, this.stanzatest.getNumeroAttrezzi());
+		assertTrue(this.stanzatest.removeAttrezzo(attrezzoTest2));
+		assertEquals(1, this.stanzatest.getNumeroAttrezzi());
+		assertFalse(this.stanzatest.hasAttrezzo("attrezzoTest2"));
+	}
+	
 
 }

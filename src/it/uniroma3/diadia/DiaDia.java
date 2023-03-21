@@ -25,7 +25,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 
 	private Partita partita;
 
@@ -63,6 +63,10 @@ public class DiaDia {
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
+		else if (comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
+		else if(comandoDaEseguire.getNome().equals("posa"))
+			this.posa(comandoDaEseguire.getParametro());
 		else
 			System.out.println("Comando sconosciuto");
 		if (this.partita.vinta()) {
@@ -73,6 +77,33 @@ public class DiaDia {
 		}
 		return this.partita.isFinita();
 	}   
+
+	private void posa(String NomeAttrezzo) {
+		// TODO Auto-generated method stub
+		if(NomeAttrezzo == null)
+			System.out.println("cosa vuoi posare?");
+		Attrezzo attrezzoPosato = this.partita.getGiocatore().getInventario().removeAttrezzo(NomeAttrezzo);
+		if(attrezzoPosato == null)
+			System.out.println("attrezzo inesistente");
+		else {
+			this.partita.getStanzaCorrente().addAttrezzo(attrezzoPosato);
+		}
+		System.out.println(this.partita.getStanzaCorrente().getDescrizione());
+	}
+
+	private void prendi(String nomeAttrezzo) {
+		// TODO Auto-generated method stub
+		if(nomeAttrezzo == null)
+			System.out.println("cosa vuoi prendere?");
+		Attrezzo attrezzoDaPrendere = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		if(attrezzoDaPrendere == null)
+			System.out.println("attrezzo inesistente");
+		else {
+			this.partita.getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
+			this.partita.getGiocatore().getInventario().addAttrezzo(attrezzoDaPrendere);
+		}
+		System.out.println(this.partita.getStanzaCorrente().getDescrizione());
+	}
 
 	// implementazioni dei comandi dell'utente:
 
