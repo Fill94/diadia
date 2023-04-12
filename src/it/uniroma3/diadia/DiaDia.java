@@ -1,6 +1,7 @@
 package it.uniroma3.diadia;
-import it.uniroma3.diadia.ambienti.*;
-import it.uniroma3.diadia.attrezzi.*;
+import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.FabbricaDiComandi;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -26,8 +27,6 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
-
 	private Partita partita;
 	private IOconsole console;
 	public DiaDia(IOconsole console) {
@@ -50,94 +49,18 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	//anzichè far tornare true o false cedo la responsabilità di decidere se la partita è finita al metodo Partita.isFInita
+ 
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire = new Comando(istruzione);
-		if(comandoDaEseguire.getNome() == null) {
-			this.console.mostraMessaggio("inserire un comando");
-			return this.partita.isFinita();
-		}
-		if (comandoDaEseguire.getNome().equals("fine")) {
-			this.fine(); 
-		} else if (comandoDaEseguire.getNome().equals("vai"))
-			this.vai(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("aiuto"))
-			this.aiuto();
-		else if (comandoDaEseguire.getNome().equals("prendi"))
-			this.prendi(comandoDaEseguire.getParametro());
-		else if(comandoDaEseguire.getNome().equals("posa"))
-			this.posa(comandoDaEseguire.getParametro());
-		else
-			this.console.mostraMessaggio("Comando sconosciuto");
-		if (this.partita.vinta()) {
-			this.console.mostraMessaggio("Hai vinto!");
-		} 
-		if(this.partita.getGiocatore().getCfu()== 0) {
-			this.console.mostraMessaggio("Cfu esauriti, GAME OVER!");
-		}
+		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		Comando comandoDaEseguire = factory.costruisciComando(istruzione);
+		comandoDaEseguire.esegui(partita);
+		if(this.partita.getGiocatore().getCfu() == 0)
+			console.mostraMessaggio("CFU esauriti");
+		if(this.partita.vinta())
+			console.mostraMessaggio("Complimenti, hai vinto!");
 		return this.partita.isFinita();
-	}   
-
-	private void posa(String NomeAttrezzo) {
-		if(NomeAttrezzo == null)
-			this.console.mostraMessaggio("cosa vuoi posare?");
-		Attrezzo attrezzoPosato = this.partita.getGiocatore().getInventario().removeAttrezzo(NomeAttrezzo);
-		if(attrezzoPosato == null)
-			this.console.mostraMessaggio("attrezzo inesistente");
-		else {
-			this.partita.getStanzaCorrente().addAttrezzo(attrezzoPosato);
-		}
-		this.console.mostraMessaggio(this.partita.getStanzaCorrente().getDescrizione());
 	}
 
-	private void prendi(String nomeAttrezzo) {
-		if(nomeAttrezzo == null)
-			this.console.mostraMessaggio("cosa vuoi prendere?");
-		Attrezzo attrezzoDaPrendere = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-		if(attrezzoDaPrendere == null)
-			this.console.mostraMessaggio("attrezzo inesistente");
-		else {
-			this.partita.getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
-			this.partita.getGiocatore().getInventario().addAttrezzo(attrezzoDaPrendere);
-		}
-		this.console.mostraMessaggio(this.partita.getStanzaCorrente().getDescrizione());
-	}
-
-	// implementazioni dei comandi dell'utente:
-
-	/**
-	 * Stampa informazioni di aiuto.
-	 */
-	private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			this.console.mostraMessaggio(elencoComandi[i]+" ");
-	}
-
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
-	private void vai(String direzione) {
-		if(direzione==null)
-			this.console.mostraMessaggio("Dove vuoi andare ?");
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			this.console.mostraMessaggio("Direzione inesistente");
-		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu()-1;
-			this.partita.getGiocatore().setCfu(cfu);
-		}
-		this.console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-	}
-
-	/**
-	 * Comando "Fine".
-	 */
-	private void fine() {
-		this.partita.setFinita();
-		this.console.mostraMessaggio("Grazie di aver giocato!");
-	}
 
 	public static void main(String[] argc) {
 		IOconsole console = new IOconsole();

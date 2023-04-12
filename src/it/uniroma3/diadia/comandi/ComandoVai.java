@@ -3,8 +3,10 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
-public class ComandoVai implements ComandoInterface {
+public class ComandoVai implements Comando {
+	private final String NOME = "Vai";
 	private String direzione;
+
 	@Override
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
@@ -28,6 +30,16 @@ public class ComandoVai implements ComandoInterface {
 	@Override
 	public void setParametro(String direzione) {
 		this.direzione = direzione;
+	}
+	@Override
+	public String getNome() {
+		// TODO Auto-generated method stub
+		return this.NOME;
+	}
+	@Override
+	public String getParametro() {
+		// TODO Auto-generated method stub
+		return this.direzione;
 	}
 
 }

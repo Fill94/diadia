@@ -8,7 +8,6 @@ import org.junit.Test;
 import it.uniroma3.diadia.IOconsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.comandi.ComandoVai;
 
 public class ComandoVaiTest {
 	private static final String NORD = "nord";
