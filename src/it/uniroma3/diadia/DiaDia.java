@@ -31,7 +31,7 @@ public class DiaDia {
 	private Partita partita;
 	private IOconsole console;
 	public DiaDia(IOconsole console) {
-		this.partita = new Partita();
+		this.partita = new Partita(console);
 		this.console = console;
 	}
 

@@ -14,13 +14,14 @@ import it.uniroma3.diadia.giocatore.*;
 public class Partita {
 
 	
-
+	private IOconsole console;
 	private Stanza stanzaCorrente;
 	private boolean finita;
 	private Labirinto labirinto;
 	private Giocatore giocatore;
 	
-	public Partita(){
+	public Partita(IOconsole console){
+		this.console = console;
 		this.labirinto = new Labirinto();
 		this.finita = false;
 		this.giocatore = new Giocatore();
@@ -28,7 +29,9 @@ public class Partita {
 		
 	}
 
-
+	public IOconsole getConsole() {
+		return this.console;
+	}
 	public Labirinto getLabirinto() {
 		return labirinto;
 	}

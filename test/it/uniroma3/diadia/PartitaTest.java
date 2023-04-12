@@ -12,7 +12,7 @@ public class PartitaTest {
 	private Stanza stanzaTest;
 	@Before 
 	public void setUp() {
-		this.partitaTest = new Partita();
+		this.partitaTest = new Partita(new IOconsole());
 		this.stanzaTest = new Stanza("stanzaTest");
 	}
 	@Test
