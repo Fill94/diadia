@@ -1,4 +1,6 @@
 package it.uniroma3.diadia;
+import it.uniroma3.diadia.ambienti.*;
+import it.uniroma3.diadia.attrezzi.*;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
