@@ -27,9 +27,16 @@ public class DiaDiaTest {
 	}
 	@Test
 	public void testParitaPersa() {
-		this.impostaIO("vai est", "vai sud", "prendi chiave", "vai nord", "vai ovest", "vai nord", "posa chiave", "vai nord");
+		String[] comandi = new String[21];
+		for(int i = 0 ; i < 21; i++) {
+			if(i%2 == 0)
+				comandi[i]="vai sud";
+			else
+				comandi[i]="vai nord";
+		}
+		this.impostaIO(comandi);
 		diaDiaTest.gioca();
-		assertTrue(this.IOtest.getLastMessaggio().contains("Complimenti, hai vinto!"));
+		assertTrue(this.IOtest.getLastMessaggio().contains("CFU esauriti"));
 	}
 	
 
