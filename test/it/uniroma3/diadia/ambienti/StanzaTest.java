@@ -50,7 +50,17 @@ public class StanzaTest {
 		assertEquals(1, this.stanzatest.getNumeroStanzeAdiacenti());
 		assertEquals("stanzaAdiacenteTest2", this.stanzatest.getStanzaAdiacente(NORD).getNome());
 	}
-	
+	@Test
+	public void testImpostaStanzaAdiacenteNumeroMassimoDirezioniRaggiunto() {
+		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
+		this.stanzatest.impostaStanzaAdiacente(SUD, stanzaAdiacente2);
+		this.stanzatest.impostaStanzaAdiacente("EST", new Stanza("stanza a est"));
+		this.stanzatest.impostaStanzaAdiacente("OVEST", new Stanza("stanza a ovest"));
+		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
+		this.stanzatest.impostaStanzaAdiacente("DIREZIONE IN ECCESSO", new Stanza("stanza di troppo"));
+		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
+		assertFalse(this.stanzatest.getDirezioni().contains("DIREZIONE IN ECCESSO"));
+	}
 	@Test
 	public void testGetStanzaAdiacenteNessunaStanzaAdiacente() {
 		assertNull(this.stanzatest.getStanzaAdiacente(NORD));
@@ -72,18 +82,18 @@ public class StanzaTest {
 	public void testAddAttrezzoUnAttrezzoNellaStanza() {
 		assertTrue(this.stanzatest.addAttrezzo(attrezzoTest));
 		assertEquals(1, this.stanzatest.getNumeroAttrezzi());
-		assertTrue(this.stanzatest.addAttrezzo(attrezzoTest));
-		assertEquals(2, this.stanzatest.getNumeroAttrezzi());
-	}
-	
-	
-	@Test
-	public void testAddAttrezzoNumeroMassimoAttrezziNellaStanza() {
-		for(int i = 0 ; i < 10 ; i++ )
-			this.stanzatest.addAttrezzo(new Attrezzo(ATTREZZO_TEST+i , 1));
-		assertEquals(10, this.stanzatest.getNumeroAttrezzi());
 		assertFalse(this.stanzatest.addAttrezzo(attrezzoTest));
+		assertEquals(1, this.stanzatest.getNumeroAttrezzi());
 	}
+	
+//	------ TEST DEPRECATO, NON VI STA PIù UN LIMITE DI ATTREZZI
+//	@Test
+//	public void testAddAttrezzoNumeroMassimoAttrezziNellaStanza() {
+//		for(int i = 0 ; i < 10 ; i++ )
+//			this.stanzatest.addAttrezzo(new Attrezzo(ATTREZZO_TEST+i , 1));
+//		assertEquals(10, this.stanzatest.getNumeroAttrezzi());
+//		assertFalse(this.stanzatest.addAttrezzo(attrezzoTest));
+//	}
 
 	@Test
 	public void testHasAttrezzoNonEsistente() {
@@ -104,7 +114,7 @@ public class StanzaTest {
 	@Test
 	public void testGetAttrezzoEsistente() {
 		this.stanzatest.addAttrezzo(attrezzoTest);
-		assertSame(this.attrezzoTest, this.stanzatest.getAttrezzo(ATTREZZO_TEST));
+		assertSame(attrezzoTest, this.stanzatest.getAttrezzo(ATTREZZO_TEST));
 	}
 	@Test
 	public void testRemoveAttrezzoUnAttrezzoNellaStanza() {
