@@ -11,7 +11,7 @@ package it.uniroma3.diadia.attrezzi;
  * @see Stanza
  * @version base
  */
-public class Attrezzo {
+public class Attrezzo implements Comparable<Attrezzo> {
 
 	private String nome;
 	private int peso;
@@ -54,6 +54,12 @@ public class Attrezzo {
 		// TODO Auto-generated method stub
 		Attrezzo that = (Attrezzo) obj;
 		return this.nome.equals(that.getNome()) && this.peso == that.getPeso();
+	}
+
+	@Override
+	public int compareTo(Attrezzo o) {
+		// TODO Auto-generated method stub
+		return this.nome.compareTo(o.getNome());
 	}
 
 }
