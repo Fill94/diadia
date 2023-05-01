@@ -2,6 +2,9 @@ package it.uniroma3.diadia.giocatore;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.SortedSet;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -93,5 +96,51 @@ public class BorsaTest {
 		assertEquals(0, this.borsaTest.getPeso());
 		assertTrue(this.borsaTest.isEmpty());
 	}
-
+	@Test
+	public void testgetContenutoOrdinatoPerPesoBorsaVuota() {
+		assertTrue(this.borsaTest.getContenutoOrdinatoPerPeso().size() == 0);
+	}
+	@Test
+	public void testgetContenutoOrdinatoPerPesoDueAttrezziPesoDiverso() {
+		Attrezzo attrezzoPesoMaggiore = new Attrezzo("attrezzo peso 2", 2);
+		this.borsaTest.addAttrezzo(attrezzoPesoMaggiore);
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		List<Attrezzo> listaOrdinataPerPeso = this.borsaTest.getContenutoOrdinatoPerPeso();
+		assertEquals(0, listaOrdinataPerPeso.indexOf(attrezzoTest));
+		assertEquals(1, listaOrdinataPerPeso.indexOf(attrezzoPesoMaggiore));
+	}
+	@Test
+	public void testgetContenutoOrdinatoPerPesoDueAttrezziPesoUguale() {
+		Attrezzo attrezzoCheIncominciaPerA = new Attrezzo("a", 1);
+		Attrezzo attrezzoCheIncominciaPerB = new Attrezzo("b", 1);
+		this.borsaTest.addAttrezzo(attrezzoCheIncominciaPerB);
+		this.borsaTest.addAttrezzo(attrezzoCheIncominciaPerA);
+		List<Attrezzo> listaOrdinataPerPeso = this.borsaTest.getContenutoOrdinatoPerPeso();
+		assertEquals(0, listaOrdinataPerPeso.indexOf(attrezzoCheIncominciaPerA));
+		assertEquals(1, listaOrdinataPerPeso.indexOf(attrezzoCheIncominciaPerB));
+	}
+	@Test 
+	public void testGetContenutoOrdinatoPerNomeDueAttrezziNomiDiversi() {
+		Attrezzo attrezzoCheIncominciaPerA = new Attrezzo("a", 1);
+		Attrezzo attrezzoCheIncominciaPerB = new Attrezzo("b", 1);
+		this.borsaTest.addAttrezzo(attrezzoCheIncominciaPerB);
+		this.borsaTest.addAttrezzo(attrezzoCheIncominciaPerA);
+		SortedSet<Attrezzo> insiemeOrdinatoPerNome = this.borsaTest.getContenutoOrdinatoPerNome();
+		assertEquals(attrezzoCheIncominciaPerA, insiemeOrdinatoPerNome.first());
+		assertEquals(attrezzoCheIncominciaPerB, insiemeOrdinatoPerNome.last());
+	}
+	@Test
+	public void testGetContenutoRaggruppatoPerPeso1Attrezzo() {
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		assertTrue(this.borsaTest.getContenutoRaggruppatoPerPeso().containsKey(attrezzoTest.getPeso()));
+	}
+	@Test
+	public void testGetContenutoRaggruppatoPerPeso2Attrezzi() {
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		Attrezzo attrezzoTest2 = new Attrezzo("attrezzoTest2", 2);
+		this.borsaTest.addAttrezzo(attrezzoTest2);
+		assertTrue(this.borsaTest.getContenutoRaggruppatoPerPeso().containsKey(attrezzoTest.getPeso()));
+		assertEquals(1, this.borsaTest.getContenutoRaggruppatoPerPeso().get(attrezzoTest2.getPeso()).size());
+		assertEquals(1, this.borsaTest.getContenutoRaggruppatoPerPeso().get(attrezzoTest.getPeso()).size());
+	}
 }

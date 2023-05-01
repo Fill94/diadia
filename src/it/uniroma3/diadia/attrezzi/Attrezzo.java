@@ -55,7 +55,11 @@ public class Attrezzo implements Comparable<Attrezzo> {
 		Attrezzo that = (Attrezzo) obj;
 		return this.nome.equals(that.getNome()) && this.peso == that.getPeso();
 	}
-
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.getNome().hashCode() + this.getPeso();
+	}
 	@Override
 	public int compareTo(Attrezzo o) {
 		// TODO Auto-generated method stub
