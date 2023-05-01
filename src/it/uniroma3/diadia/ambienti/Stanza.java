@@ -89,6 +89,9 @@ public class Stanza {
 		stanza = this.stanzeAdiacenti.get(direzione);
 		return stanza;
 	}
+	public Map<String, Stanza> getMapStanzeAdiacenti(){
+		return this.stanzeAdiacenti;
+	}
 
 	/**
 	 * Restituisce la nome della stanza.
@@ -246,6 +249,12 @@ public class Stanza {
 		return direzioni;
 		*/
 		return this.stanzeAdiacenti.keySet();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Stanza that = (Stanza) obj;
+		return this.getNome().equals(that.getNome());
 	}
 
 }

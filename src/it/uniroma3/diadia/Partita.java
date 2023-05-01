@@ -28,7 +28,10 @@ public class Partita {
 		this.stanzaCorrente = this.labirinto.getStanzaIniziale();
 		
 	}
-
+	public Partita(IO console , Labirinto labirinto) {
+		this(console);
+		this.labirinto = labirinto;
+	}
 	public IO getConsole() {
 		return this.console;
 	}

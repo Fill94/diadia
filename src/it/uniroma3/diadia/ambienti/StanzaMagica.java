@@ -28,8 +28,13 @@ public class StanzaMagica extends Stanza {
 	@Override
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		contatoreAttrezziPosati++;
-		if(contatoreAttrezziPosati >= sogliaMagica)
+		if(contatoreAttrezziPosati > sogliaMagica)
 			attrezzo = this.modificaAttrezzo(attrezzo);
 		return super.addAttrezzo(attrezzo);
+	}
+
+	public boolean isMagica() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
