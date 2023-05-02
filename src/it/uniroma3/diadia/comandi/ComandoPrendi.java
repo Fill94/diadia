@@ -18,10 +18,10 @@ public class ComandoPrendi implements Comando {
 			partita.getConsole().mostraMessaggio("attrezzo inesistente");
 			return;
 		}
-		else {
+		if(partita.getGiocatore().getInventario().addAttrezzo(attrezzoDaPrendere))
 			partita.getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
-			partita.getGiocatore().getInventario().addAttrezzo(attrezzoDaPrendere);
-		}
+		else
+			partita.getConsole().mostraMessaggio("non puoi raccogliere l'attrezzo, potrebbe essere troppo pesante o potresti averne uno con lo stesso nome nell'inventario");
 		partita.getConsole().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 	}
 

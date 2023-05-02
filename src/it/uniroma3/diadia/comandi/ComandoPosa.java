@@ -11,11 +11,15 @@ public class ComandoPosa implements Comando {
 		// TODO Auto-generated method stub
 		if(attrezzo == null)
 			partita.getConsole().mostraMessaggio("cosa vuoi posare?");
-		Attrezzo attrezzoPosato = partita.getGiocatore().getInventario().removeAttrezzo(attrezzo);
-		if(attrezzoPosato == null)
+		Attrezzo attrezzoPosato = partita.getGiocatore().getInventario().getAttrezzo(attrezzo);
+		if(attrezzoPosato == null) {
 			partita.getConsole().mostraMessaggio("attrezzo inesistente");
+			return;
+		}
+		if(partita.getStanzaCorrente().addAttrezzo(attrezzoPosato))
+			partita.getGiocatore().getInventario().removeAttrezzo(attrezzoPosato.getNome());
 		else {
-			partita.getStanzaCorrente().addAttrezzo(attrezzoPosato);
+			partita.getConsole().mostraMessaggio("non puoi posare l'attrezzo nella stanza, deve essercene uno con nome uguale");
 		}
 		partita.getConsole().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 	}

@@ -52,5 +52,13 @@ public class ComandoPrendiTest {
 		assertFalse(this.stanzaTest.hasAttrezzo(NOME_ATTREZZO));
 		assertFalse(this.giocatoreTest.getInventario().isEmpty());
 	}
+	@Test
+	public void eseguiTestAttrezzoConStessoNomePresenteNellinventario() {
+		this.giocatoreTest.getInventario().addAttrezzo(new Attrezzo(NOME_ATTREZZO, 2));
+		this.prendiTest.setParametro(NOME_ATTREZZO);
+		this.prendiTest.esegui(partitaTest);
+		assertTrue(this.stanzaTest.hasAttrezzo(NOME_ATTREZZO));
+		assertTrue(this.giocatoreTest.getInventario().getContenutoOrdinatoPerPeso().size() == 1);
+	}
 
 }

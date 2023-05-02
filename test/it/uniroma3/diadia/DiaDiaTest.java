@@ -67,6 +67,7 @@ public class DiaDiaTest {
 		diaDiaTest.gioca();
 		assertTrue(this.IOtest.getMessaggi("vai ovest").contains("CFU esauriti, Sei morto!"));
 	}
+	
 	@Test
 	public void partitaConStanzaMagicaEstanzaBloccata() {
 		Labirinto trilocale = new LabirintoBuilder()

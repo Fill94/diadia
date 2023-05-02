@@ -10,7 +10,7 @@ public class StanzaBuia extends Stanza{
 	public String toString() {
 		if(this.hasAttrezzo(nomeAttrezzoIlluminante))
 			return super.toString();
-		return "quì c'è un buio pesto, servirebbe qualcosa per fare luce!";
+		return "qui vi sta un buio pesto, servirebbe qualcosa per fare luce!";
 	}
 	
 	

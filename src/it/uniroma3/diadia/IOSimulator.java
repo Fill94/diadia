@@ -6,20 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class IOSimulator implements IO {
-	private static final int DIMENSIONE_ARRAY = 50;
-	//private String[] comandi;
 	private List<String> comandi;
-	//private String[] messaggi;
 	private Map<String, List<String>> comandi2Messaggi;
-	private int numeroComandi;
-	private int numeroMessaggi;
 	private int indiceComandi;
-	private int indiceMessaggi;
 	private String ultimoComandoLetto;
 	
 	public IOSimulator() {
-//		this.comandi = new String[DIMENSIONE_ARRAY];
-//		this.messaggi = new String[DIMENSIONE_ARRAY];
 		this.comandi = new ArrayList<>();
 		this.comandi2Messaggi = new HashMap<>();
 	}

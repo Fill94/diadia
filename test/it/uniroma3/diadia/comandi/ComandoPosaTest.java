@@ -51,5 +51,13 @@ public class ComandoPosaTest {
 		assertTrue(this.giocatoreTest.getInventario().isEmpty());
 		assertEquals(1 , this.stanzaTest.getNumeroAttrezzi());
 	}
+	@Test
+	public void posaTestAttrezzoConStessoNomeNellaStanza() {
+		this.stanzaTest.addAttrezzo(new Attrezzo(NOME_ATTREZZO, 1));
+		this.posaTest.setParametro(NOME_ATTREZZO);
+		this.posaTest.esegui(partitaTest);
+		assertTrue(this.giocatoreTest.getInventario().hasAttrezzo(NOME_ATTREZZO));
+		assertTrue(this.stanzaTest.getNumeroAttrezzi() == 1);
+	}
 
 }

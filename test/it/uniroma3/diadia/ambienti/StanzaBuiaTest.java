@@ -18,12 +18,12 @@ public class StanzaBuiaTest {
 
 	@Test
 	public void testGetDescrizioneSenzaAttrezzo() {
-		assertEquals("quì c'è un buio pesto, servirebbe qualcosa per fare luce!", this.buiaTest.getDescrizione());
+		assertEquals("qui vi sta un buio pesto, servirebbe qualcosa per fare luce!", this.buiaTest.getDescrizione());
 	}
 	@Test
 	public void testGetDescrizioneConAttrezzo() {
 		buiaTest.addAttrezzo(attrezzoIlluminante);
-		assertEquals(buiaTest.getNome() + "\nUscite: " + "\nAttrezzi nella stanza: " + 
+		assertEquals("\nDESCRIZIONE STANZA :"+"\nNome: "+buiaTest.getNome() + "\nUscite: " + "\nAttrezzi nella stanza: " + 
 					attrezzoIlluminante.toString() + " ", this.buiaTest.getDescrizione());
 	}
 

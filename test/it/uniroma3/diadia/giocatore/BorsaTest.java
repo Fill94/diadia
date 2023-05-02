@@ -30,6 +30,11 @@ public class BorsaTest {
 		assertTrue(this.borsaTest.addAttrezzo(new Attrezzo("attrezzoTest2", 2)));
 		assertEquals(3, this.borsaTest.getPeso());
 	}
+	@Test
+	public void testAddAttrezzoStessoNome() {
+		assertTrue(this.borsaTest.addAttrezzo(attrezzoTest));
+		assertFalse(this.borsaTest.addAttrezzo(new Attrezzo("attrezzoTest", 1)));
+	}
 	@Test 
 	public void testAddAttrezzoTroppoPeso() {
 		this.borsaTest.addAttrezzo(new Attrezzo("attrezzoPesante", 10));
@@ -153,13 +158,16 @@ public class BorsaTest {
 		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
 	}
 	@Test
-	public void testSortedSetOrdinatoPerPesoDueAttrezziPesoUgualeNomeDiverso() {
+	public void testSortedSetOrdinatoPerPesoTreAttrezziPesoUgualeNomeDiverso() {
 		this.borsaTest.addAttrezzo(attrezzoTest);
 		Attrezzo attrezzoTest2 = new Attrezzo("zappa", 1);
+		Attrezzo attrezzoTest3 = new Attrezzo("zeppa", 1);
 		this.borsaTest.addAttrezzo(attrezzoTest2);
+		this.borsaTest.addAttrezzo(attrezzoTest3);
 		this.borsaTest.addAttrezzo(attrezzoTest);
 		assertSame(attrezzoTest, this.borsaTest.getSortedSetOrdinatoPerPeso().first());
-		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+		assertSame(attrezzoTest3, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+		assertEquals(3, this.borsaTest.getSortedSetOrdinatoPerPeso().size());
 	}
 	@Test
 	public void testSortedSetOrdinatoPerPesoDueAttrezziPesoUgualeNomeUguale() {
@@ -167,8 +175,7 @@ public class BorsaTest {
 		Attrezzo attrezzoTest2 = this.attrezzoTest;
 		this.borsaTest.addAttrezzo(attrezzoTest2);
 		this.borsaTest.addAttrezzo(attrezzoTest);
-		assertSame(attrezzoTest, this.borsaTest.getSortedSetOrdinatoPerPeso().first());
-		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+		assertEquals(1, this.borsaTest.getSortedSetOrdinatoPerPeso().size());
 	}
 	
 }

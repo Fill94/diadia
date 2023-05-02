@@ -31,13 +31,13 @@ public class StanzaBloccataTest {
 
 	@Test
 	public void testGetDescrizioneSenzaAttrezzoSbloccante() {
-		assertEquals("in questa stanza vi è un porta bloccata, servirebbe qualcosa per aprirla se vuoi andare dall'altra parte!\n" +
+		assertEquals("in questa stanza vi sta una porta bloccata, servirebbe qualcosa per aprirla se vuoi andare dall'altra parte!\n" + "\nDESCRIZIONE STANZA :\nNome: "+
 				bloccataANord.getNome() + "\nUscite: " + "\nUscita bloccate: " + "nord" + "\nAttrezzi nella stanza: ", bloccataANord.getDescrizione());
 	}
 	@Test
 	public void testGetDescrizioneConAttrezzoSbloccante() {
 		bloccataANord.addAttrezzo(attrezzoSbloccante);
-		assertEquals("Hai trovato quello che serviva per sbloccare la direzione!\n" +
+		assertEquals("Hai trovato quello che serviva per sbloccare la direzione!\n" + "\nDESCRIZIONE STANZA :\nNome: "+
 					bloccataANord.getNome() + "\nUscite: " + " " + "nord" + "\nAttrezzi nella stanza: " + attrezzoSbloccante.toString() 
 					+ " ", bloccataANord.getDescrizione());
 	}

@@ -26,8 +26,9 @@ public class StanzaBloccata extends Stanza {
 		if(this.hasAttrezzo(attrezzoSbloccante))
 			return "Hai trovato quello che serviva per sbloccare la direzione!\n" + super.toString();
 		StringBuilder risultato = new StringBuilder();
-		risultato.append("in questa stanza vi è un porta bloccata, servirebbe qualcosa per aprirla se vuoi andare dall'altra parte!\n");
-		risultato.append(this.getNome());
+		risultato.append("in questa stanza vi sta una porta bloccata, servirebbe qualcosa per aprirla se vuoi andare dall'altra parte!\n");
+		risultato.append("\nDESCRIZIONE STANZA :");
+		risultato.append("\nNome: "+this.getNome());
 		risultato.append("\nUscite: ");
 		for (String direzione : this.getDirezioni())
 			if (direzione!=null && direzione != this.direzioneBloccata)

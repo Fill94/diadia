@@ -24,8 +24,8 @@ public class Labirinto {
 		Stanza aulaN10 = new Stanza("Aula N10");
 		Stanza laboratorio = new Stanza("Laboratorio Campus");
 		Stanza biblioteca = new Stanza("Biblioteca");
-		Stanza stanzinoBuio = new StanzaBuia("StanzinoBuio", "lanterna");
-		Stanza guardiolaBiblioteca = new StanzaBloccata("guardiolaBiblioteca", "chiave", "nord");
+		Stanza stanzinoBuio = new StanzaBuia("Stanzino Buio", "lanterna");
+		Stanza guardiolaBiblioteca = new StanzaBloccata("Guardiola Biblioteca", "chiave", "nord");
 		
 		/* collega le stanze */
 		atrio.impostaStanzaAdiacente("nord", guardiolaBiblioteca);
@@ -43,13 +43,12 @@ public class Labirinto {
 		aulaN10.impostaStanzaAdiacente("ovest", laboratorio);
 		laboratorio.impostaStanzaAdiacente("est", atrio);
 		laboratorio.impostaStanzaAdiacente("ovest", aulaN11);
-		biblioteca.impostaStanzaAdiacente("sud", guardiolaBiblioteca);
+		biblioteca.impostaStanzaAdiacente("sud", guardiolaBiblioteca); 
 
         /* pone gli attrezzi nelle stanze */
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 		stanzinoBuio.addAttrezzo(chiave);
-
 		// il gioco comincia nell'atrio
         stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
