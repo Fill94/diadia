@@ -13,12 +13,18 @@ public class ComandoGuarda implements Comando{
 		partita.getConsole().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		partita.getConsole().mostraMessaggio("---stato della partita---");
 		partita.getConsole().mostraMessaggio("CFU rimanenti : " + partita.getGiocatore().getCfu());
-		StringBuilder sb = new StringBuilder("Attrezzi contenuti nell'inventario : {");
+		StringBuilder sb = new StringBuilder("Attrezzi contenuti nell'inventario : ");
 		Set<Attrezzo> insiemeAttrezziPerNome = partita.getGiocatore().getInventario().getContenutoOrdinatoPerNome();
-		for(Attrezzo a : insiemeAttrezziPerNome) {
-			sb.append(a.toString()+", ");
+		if(insiemeAttrezziPerNome.size() > 0) {
+			sb.append("{");
+			for(Attrezzo a : insiemeAttrezziPerNome) {
+				sb.append(a.toString()+", ");
+			}
+			sb.append("}");
 		}
-		sb.append("}");
+		else {
+			sb.append("nessun attrezzo");
+		}
 		partita.getConsole().mostraMessaggio(sb.toString());
 	}
 

@@ -134,4 +134,9 @@ public class Borsa {
 		}
 		return peso2Attrezzi;
 	}
+	public SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso() {
+		SortedSet<Attrezzo> setAttrezzi = new TreeSet<>(new ComparatoreAttrezziPerPeso());
+		setAttrezzi.addAll(this.attrezzi.values());
+		return setAttrezzi;
+	}
 }

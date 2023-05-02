@@ -61,9 +61,9 @@ public class DiaDia {
 		Comando comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(partita);
 		if(this.partita.getGiocatore().getCfu() == 0)
-			console.mostraMessaggio("CFU esauriti");
+			console.mostraMessaggio("CFU esauriti, Sei morto!");
 		if(this.partita.vinta())
-			console.mostraMessaggio("Complimenti, hai vinto!");
+			console.mostraMessaggio("Hai vinto!");
 		return this.partita.isFinita();
 	}
 

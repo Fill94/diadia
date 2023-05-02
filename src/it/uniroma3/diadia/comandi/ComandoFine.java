@@ -8,7 +8,7 @@ public class ComandoFine implements Comando {
 	public void esegui(Partita partita) {
 		// TODO Auto-generated method stub
 		partita.setFinita();
-		partita.getConsole().mostraMessaggio("grazie di aver giocato!");;
+		partita.getConsole().mostraMessaggio("Grazie di aver giocato!");;
 	}
 
 	@Override

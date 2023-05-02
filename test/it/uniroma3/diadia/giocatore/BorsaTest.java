@@ -143,4 +143,32 @@ public class BorsaTest {
 		assertEquals(1, this.borsaTest.getContenutoRaggruppatoPerPeso().get(attrezzoTest2.getPeso()).size());
 		assertEquals(1, this.borsaTest.getContenutoRaggruppatoPerPeso().get(attrezzoTest.getPeso()).size());
 	}
+	@Test
+	public void testSortedSetOrdinatoPerPesoDueAttrezziPesoDiverso() {
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		Attrezzo attrezzoTest2 = new Attrezzo("attrezzoTest2", 2);
+		this.borsaTest.addAttrezzo(attrezzoTest2);
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		assertSame(attrezzoTest, this.borsaTest.getSortedSetOrdinatoPerPeso().first());
+		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+	}
+	@Test
+	public void testSortedSetOrdinatoPerPesoDueAttrezziPesoUgualeNomeDiverso() {
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		Attrezzo attrezzoTest2 = new Attrezzo("zappa", 1);
+		this.borsaTest.addAttrezzo(attrezzoTest2);
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		assertSame(attrezzoTest, this.borsaTest.getSortedSetOrdinatoPerPeso().first());
+		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+	}
+	@Test
+	public void testSortedSetOrdinatoPerPesoDueAttrezziPesoUgualeNomeUguale() {
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		Attrezzo attrezzoTest2 = this.attrezzoTest;
+		this.borsaTest.addAttrezzo(attrezzoTest2);
+		this.borsaTest.addAttrezzo(attrezzoTest);
+		assertSame(attrezzoTest, this.borsaTest.getSortedSetOrdinatoPerPeso().first());
+		assertSame(attrezzoTest2, this.borsaTest.getSortedSetOrdinatoPerPeso().last());
+	}
+	
 }

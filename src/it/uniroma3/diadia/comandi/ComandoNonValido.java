@@ -7,7 +7,7 @@ public class ComandoNonValido implements Comando {
 	@Override
 	public void esegui(Partita partita) {
 		// TODO Auto-generated method stub
-		partita.getConsole().mostraMessaggio("comando inesistente!");
+		partita.getConsole().mostraMessaggio("Comando inesistente!");
 	}
 
 	@Override
