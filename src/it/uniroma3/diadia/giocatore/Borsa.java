@@ -77,7 +77,8 @@ public class Borsa {
 		return listaAttrezzi;
 	}
 	public SortedSet<Attrezzo> getContenutoOrdinatoPerNome() {
-		SortedSet<Attrezzo> insiemeOrdinatoPerNome = new TreeSet<>(this.attrezzi.values());
+		SortedSet<Attrezzo> insiemeOrdinatoPerNome = new TreeSet<>(new ComparatorePerNome());
+		insiemeOrdinatoPerNome.addAll(this.attrezzi.values());
 		return insiemeOrdinatoPerNome;
 	}
 	public Map<Integer,Set<Attrezzo>> getContenutoRaggruppatoPerPeso() {
@@ -87,12 +88,11 @@ public class Borsa {
 		for(Attrezzo attrezzo : attrezzi) {
 			if(peso2Attrezzi.containsKey(attrezzo.getPeso())) {
 				tmp = peso2Attrezzi.get(attrezzo.getPeso());
-				tmp.add(attrezzo);
 			}
 			else {
 				tmp = new HashSet<>();
-				tmp.add(attrezzo);
 			}
+			tmp.add(attrezzo);
 			peso2Attrezzi.put(attrezzo.getPeso(), tmp);
 		}
 		return peso2Attrezzi;
