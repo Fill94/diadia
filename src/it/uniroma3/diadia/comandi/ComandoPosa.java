@@ -3,7 +3,7 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoPosa implements Comando {
+public class ComandoPosa extends AbstractComando {
 	private final String NOME = "Posa";
 	private String attrezzo;
 	@Override

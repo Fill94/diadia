@@ -2,7 +2,7 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
 
-public class ComandoFine implements Comando {
+public class ComandoFine extends AbstractComando {
 	private final String NOME = "Fine";
 	@Override
 	public void esegui(Partita partita) {
@@ -10,23 +10,9 @@ public class ComandoFine implements Comando {
 		partita.setFinita();
 		partita.getConsole().mostraMessaggio("Grazie di aver giocato!");;
 	}
-
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public String getNome() {
 		// TODO Auto-generated method stub
 		return this.NOME;
 	}
-
-	@Override
-	public String getParametro() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

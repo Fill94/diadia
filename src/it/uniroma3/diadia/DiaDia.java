@@ -1,5 +1,6 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.*;
+import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
@@ -59,7 +60,7 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 //		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
 		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
-		Comando comandoDaEseguire = factory.costruisciComando(istruzione);
+		AbstractComando comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(partita);
 		if(this.partita.getGiocatore().getCfu() == 0)
 			console.mostraMessaggio("CFU esauriti, Sei morto!");
