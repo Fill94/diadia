@@ -1,9 +1,9 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.*;
-import it.uniroma3.diadia.attrezzi.*;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -57,7 +57,8 @@ public class DiaDia {
 	//anzichè far tornare true o false cedo la responsabilità di decidere se la partita è finita al metodo Partita.isFInita
  
 	private boolean processaIstruzione(String istruzione) {
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+//		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		Comando comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(partita);
 		if(this.partita.getGiocatore().getCfu() == 0)
