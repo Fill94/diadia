@@ -1,6 +1,7 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.giocatore.*;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 
 /**
@@ -19,6 +20,7 @@ public class Partita {
 	private boolean finita;
 	private Labirinto labirinto;
 	private Giocatore giocatore;
+	public AbstractPersonaggio personaggio;
 	
 	public Partita(IO console){
 		this.console = console;
@@ -85,5 +87,6 @@ public class Partita {
 
 	public void setGiocatore(Giocatore giocatore) {
 		this.giocatore = giocatore;
-	}	
+	}
+
 }

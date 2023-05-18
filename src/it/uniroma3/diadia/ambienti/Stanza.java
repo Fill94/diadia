@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.*;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 
 /**
@@ -24,6 +25,7 @@ public class Stanza {
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
 	private Map<String, Stanza> stanzeAdiacenti;
+	private AbstractPersonaggio personaggio;
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -33,8 +35,12 @@ public class Stanza {
 		this.nome = nome;
 		this.stanzeAdiacenti = new HashMap<>();
 		this.attrezzi = new HashMap<>();
+		this.personaggio = null;
 	}
-
+	public Stanza(String nome, AbstractPersonaggio personaggio) {
+		this(nome);
+		this.personaggio = personaggio;
+	}
 	/**
 	 * Imposta una stanza adiacente.
 	 *
@@ -175,6 +181,19 @@ public class Stanza {
 		// TODO Auto-generated method stub
 		Stanza that = (Stanza) obj;
 		return this.getNome().equals(that.getNome());
+	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return this.getNome().hashCode();
+	}
+
+	public AbstractPersonaggio getPersonaggio() {
+		// TODO Auto-generated method stub
+		return this.personaggio;
+	}
+	public void setPersonaggio(AbstractPersonaggio personaggio) {
+		this.personaggio = personaggio;
 	}
 
 }
