@@ -1,23 +1,33 @@
 package it.uniroma3.diadia.ambienti;
+import java.io.FileNotFoundException;
+
+import it.uniroma3.diadia.CaricatoreLabirinto;
+import it.uniroma3.diadia.FormatoFileNonValidoException;
 import it.uniroma3.diadia.attrezzi.*;
 
 public class Labirinto {
 	private Stanza stanzaVincente;
 	private Stanza stanzaIniziale;
-	
+
 	public Labirinto() {
 		this.init();
 	}
-	 /**
-     * Crea tutte le stanze e le porte di collegamento
-     */
-    private void init() {
+	public Labirinto(String nomeFileLabirinto) throws FileNotFoundException , FormatoFileNonValidoException{
+		CaricatoreLabirinto caricatore = new CaricatoreLabirinto(nomeFileLabirinto);
+		caricatore.carica();
+		this.stanzaIniziale = caricatore.getStanzaIniziale();
+		this.stanzaVincente = caricatore.getStanzaVincente();
+	}
+	/**
+	 * Crea tutte le stanze e le porte di collegamento
+	 */
+	private void init() {
 
 		/* crea gli attrezzi */
-    	Attrezzo lanterna = new Attrezzo("lanterna",3);
+		Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1);
 		Attrezzo chiave = new Attrezzo("chiave", 1);
-    	
+
 		/* crea stanze del labirinto */
 		Stanza atrio = new Stanza("Atrio");
 		Stanza aulaN11 = new Stanza("Aula N11");
@@ -26,7 +36,7 @@ public class Labirinto {
 		Stanza biblioteca = new Stanza("Biblioteca");
 		Stanza stanzinoBuio = new StanzaBuia("Stanzino Buio", "lanterna");
 		Stanza guardiolaBiblioteca = new StanzaBloccata("Guardiola Biblioteca", "chiave", "nord");
-		
+
 		/* collega le stanze */
 		atrio.impostaStanzaAdiacente("nord", guardiolaBiblioteca);
 		guardiolaBiblioteca.impostaStanzaAdiacente("sud", atrio);
@@ -45,14 +55,14 @@ public class Labirinto {
 		laboratorio.impostaStanzaAdiacente("ovest", aulaN11);
 		biblioteca.impostaStanzaAdiacente("sud", guardiolaBiblioteca); 
 
-        /* pone gli attrezzi nelle stanze */
+		/* pone gli attrezzi nelle stanze */
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 		stanzinoBuio.addAttrezzo(chiave);
 		// il gioco comincia nell'atrio
-        stanzaIniziale = atrio;  
+		stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
-    }
+	}
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
@@ -65,5 +75,5 @@ public class Labirinto {
 	public void setStanzaIniziale(Stanza stanzaIniziale) {
 		this.stanzaIniziale = stanzaIniziale;
 	}
-	
+
 }

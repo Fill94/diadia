@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi{
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public AbstractComando costruisciComando(String istruzione){
 		// TODO Auto-generated method stub
