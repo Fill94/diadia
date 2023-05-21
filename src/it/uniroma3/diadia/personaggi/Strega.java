@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 /**
  * Strega: se interagiamo con una strega questa ci trasferisce in una stanza tra quelle adiacenti.
  *	Siccome è permalosa:
@@ -20,6 +21,7 @@ public class Strega extends AbstractPersonaggio {
 											+ "numero di attrezzi";
 	private static final String MESSAGGIO_MENO_ATTREZZI = "Visto che non mi hai salutato ti trasferisco nella stanza con minor"
 											+ "numero di attrezzi";
+	private static final String MESSAGGIO_REGALO = "AHAHAHAHAHAHHAHAH, grazie del regalo ma non aspettarti nulla da me";
 	public Strega(String nome, String presentazione) {
 		super(nome, presentazione);
 	}
@@ -58,5 +60,11 @@ public class Strega extends AbstractPersonaggio {
 			attrezzi2Adiacenti.put(numeroAttrezziNellaStanza, stanze);
 		}
 		return attrezzi2Adiacenti;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzoInRegalo, Partita partita) {
+		// TODO Auto-generated method stub
+		return MESSAGGIO_REGALO;
 	}
 }
