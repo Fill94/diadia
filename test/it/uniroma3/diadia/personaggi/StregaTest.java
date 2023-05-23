@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.IOconsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
@@ -27,10 +28,10 @@ public class StregaTest {
 				.addAttrezzo("attrezzo2", 2)
 				.addStanzaVincente(stanzaFinale)
 				.addAttrezzo("attrezzo3", 3)
-				.addAdiacenza(stanzaIniziale, stanzaCasuale, "nord")
-				.addAdiacenza(stanzaCasuale, stanzaIniziale, "sud")
-				.addAdiacenza(stanzaIniziale, stanzaFinale, "est")
-				.addAdiacenza(stanzaFinale, stanzaCasuale, "ovest")
+				.addAdiacenza(stanzaIniziale, stanzaCasuale, Direzione.NORD)
+				.addAdiacenza(stanzaCasuale, stanzaIniziale, Direzione.SUD)
+				.addAdiacenza(stanzaIniziale, stanzaFinale, Direzione.EST)
+				.addAdiacenza(stanzaFinale, stanzaCasuale, Direzione.OVEST)
 				.getLabirinto();
 		this.partitaTest = new Partita(new IOconsole(), labirintoTest);
 		this.stregaTest = new Strega("Strega", "sono una strega cattiva");

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.attrezzi.*;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
@@ -21,10 +22,10 @@ import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 public class Stanza {
 
-	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
+	//static final private int NUMERO_MASSIMO_DIREZIONI = 4;
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
-	private Map<String, Stanza> stanzeAdiacenti;
+	private Map<Direzione, Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
 
 	/**
@@ -47,10 +48,10 @@ public class Stanza {
 	 * @param direzione direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-		if(this.stanzeAdiacenti.keySet().size() < NUMERO_MASSIMO_DIREZIONI) {
+	public void impostaStanzaAdiacente(Direzione direzione, Stanza stanza) {
+		//if(this.stanzeAdiacenti.keySet().size() < NUMERO_MASSIMO_DIREZIONI) {
 			this.stanzeAdiacenti.put(direzione, stanza);
-		}
+		//}
 		return;
 	}
 	/**
@@ -65,12 +66,12 @@ public class Stanza {
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
 		Stanza stanza = null;		
 		stanza = this.stanzeAdiacenti.get(direzione);
 		return stanza;
 	}
-	public Map<String, Stanza> getMapStanzeAdiacenti(){
+	public Map<Direzione, Stanza> getMapStanzeAdiacenti(){
 		return this.stanzeAdiacenti;
 	}
 
@@ -127,7 +128,7 @@ public class Stanza {
 		risultato.append("\nDESCRIZIONE STANZA :");
 		risultato.append("\nNome: "+this.nome);
 		risultato.append("\nUscite: ");
-		for (String direzione : this.getDirezioni())
+		for (Direzione direzione : this.getDirezioni())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
 		risultato.append("\nAttrezzi nella stanza: ");
@@ -135,6 +136,9 @@ public class Stanza {
 			if(attrezzo != null)
 				risultato.append(attrezzo.toString()+" ");
 		}
+		risultato.append("\nPersonaggio nella stanza: ");
+		if(this.getPersonaggio() != null)
+			risultato.append(this.getPersonaggio().toString());
 		return risultato.toString();
 	}
 
@@ -173,7 +177,7 @@ public class Stanza {
 	}
 
 
-	public Set<String> getDirezioni() {
+	public Set<Direzione> getDirezioni() {
 		return this.stanzeAdiacenti.keySet();
 	}
 	@Override

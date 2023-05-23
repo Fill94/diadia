@@ -28,7 +28,7 @@ public class DiaDiaTest {
 			IOtest.addComando(s);
 		return this.IOtest;
 	}
-	private Labirinto bilocaleVuoto(String nomeStanzaIniziale, String direzioneAdiacenzaStanzaFinaleRispettoStanzaIniziale, String nomeStanzaFinale, String direzioneAdiacenzaStanzaInizialeRispettoStanzaFinale) {
+	private Labirinto bilocaleVuoto(String nomeStanzaIniziale, Direzione direzioneAdiacenzaStanzaFinaleRispettoStanzaIniziale, String nomeStanzaFinale, Direzione direzioneAdiacenzaStanzaInizialeRispettoStanzaFinale) {
 		Labirinto labirinto = new LabirintoBuilder()
 								.addStanzaIniziale(nomeStanzaIniziale)
 								.addStanzaVincente(nomeStanzaFinale)
@@ -39,7 +39,7 @@ public class DiaDiaTest {
 	}
 	@Test
 	public void partitaVintaBilocaleVuoto() {
-		this.diaDiaTest = new DiaDia(IOtest, bilocaleVuoto("atrio", "nord", "biblioteca", "sud"));
+		this.diaDiaTest = new DiaDia(IOtest, bilocaleVuoto("atrio", Direzione.NORD, "biblioteca", Direzione.SUD));
 		this.impostaIO("vai nord");
 		this.diaDiaTest.gioca();
 		assertTrue(this.IOtest.getMessaggi(null).contains(MESSAGGIO_DI_BENVENUTO));
@@ -51,9 +51,9 @@ public class DiaDiaTest {
 								.addStanzaIniziale("Atrio")
 								.addStanzaVincente("Biblioteca")
 								.addStanza("N10")
-								.addAdiacenza("Atrio", "Biblioteca", "nord")
-								.addAdiacenza("Atrio", "N10", "est")
-								.addAdiacenza("N10", "Atrio", "ovest")
+								.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+								.addAdiacenza("Atrio", "N10", Direzione.EST)
+								.addAdiacenza("N10", "Atrio", Direzione.OVEST)
 								.getLabirinto();
 		this.diaDiaTest = new DiaDia(IOtest, trilocale);
 		String[] comandi = new String[20];
@@ -71,14 +71,14 @@ public class DiaDiaTest {
 	@Test
 	public void partitaConStanzaMagicaEstanzaBloccata() {
 		Labirinto trilocale = new LabirintoBuilder()
-				.addStanzaBloccata("Atrio", "chiave", "nord")
+				.addStanzaBloccata("Atrio", "chiave", Direzione.NORD)
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("evaihc", 1)//chiave
 				.addStanzaVincente("Biblioteca")
 				.addStanzaMagica("N10", 2)
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Atrio", "N10", "est")
-				.addAdiacenza("N10", "Atrio", "ovest")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+				.addAdiacenza("Atrio", "N10", Direzione.EST)
+				.addAdiacenza("N10", "Atrio", Direzione.OVEST)
 				.getLabirinto();
 		this.impostaIO("vai nord", "prendi evaihc", "vai est", "posa evaihc", "prendi evaihc", "posa evaihc", "prendi evaihc", "posa evaihc", "prendi chiave", "vai ovest","posa chiave", "vai nord");
 		diaDiaTest = new DiaDia(IOtest, trilocale);

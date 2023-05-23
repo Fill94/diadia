@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaTest {
@@ -28,48 +29,48 @@ public class StanzaTest {
 	@Test
 	public void testImpostaStanzaAdiacenteNessunaStanzaAdiacente() {
 		assertEquals(0, this.stanzatest.getNumeroStanzeAdiacenti());
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
+		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
 		assertEquals(1, this.stanzatest.getNumeroStanzeAdiacenti());
-		assertEquals("stanzaAdiacenteTest", this.stanzatest.getStanzaAdiacente(NORD).getNome());
+		assertEquals("stanzaAdiacenteTest", this.stanzatest.getStanzaAdiacente(Direzione.NORD).getNome());
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteUnaStanzaAdiacente() {
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
-		this.stanzatest.impostaStanzaAdiacente(SUD, stanzaAdiacente2);
+		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
+		this.stanzatest.impostaStanzaAdiacente(Direzione.SUD, stanzaAdiacente2);
 		assertEquals(2, this.stanzatest.getNumeroStanzeAdiacenti());
-		assertEquals("stanzaAdiacenteTest", this.stanzatest.getStanzaAdiacente(NORD).getNome());
-		assertEquals("stanzaAdiacenteTest2", this.stanzatest.getStanzaAdiacente(SUD).getNome());
+		assertEquals("stanzaAdiacenteTest", this.stanzatest.getStanzaAdiacente(Direzione.NORD).getNome());
+		assertEquals("stanzaAdiacenteTest2", this.stanzatest.getStanzaAdiacente(Direzione.SUD).getNome());
 	}
 	
 	@Test
 	public void testImpostaStanzaAdiacenteSovrascriviStanzaAdiacente() {
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
+		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
 		assertEquals(1, this.stanzatest.getNumeroStanzeAdiacenti());
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente2);
+		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente2);
 		assertEquals(1, this.stanzatest.getNumeroStanzeAdiacenti());
-		assertEquals("stanzaAdiacenteTest2", this.stanzatest.getStanzaAdiacente(NORD).getNome());
+		assertEquals("stanzaAdiacenteTest2", this.stanzatest.getStanzaAdiacente(Direzione.NORD).getNome());
 	}
-	@Test
-	public void testImpostaStanzaAdiacenteNumeroMassimoDirezioniRaggiunto() {
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
-		this.stanzatest.impostaStanzaAdiacente(SUD, stanzaAdiacente2);
-		this.stanzatest.impostaStanzaAdiacente("EST", new Stanza("stanza a est"));
-		this.stanzatest.impostaStanzaAdiacente("OVEST", new Stanza("stanza a ovest"));
-		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
-		this.stanzatest.impostaStanzaAdiacente("DIREZIONE IN ECCESSO", new Stanza("stanza di troppo"));
-		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
-		assertFalse(this.stanzatest.getDirezioni().contains("DIREZIONE IN ECCESSO"));
-	}
+//	@Test
+//	public void testImpostaStanzaAdiacenteNumeroMassimoDirezioniRaggiunto() {
+//		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
+//		this.stanzatest.impostaStanzaAdiacente(Direzione.SUD, stanzaAdiacente2);
+//		this.stanzatest.impostaStanzaAdiacente(Direzione.EST, new Stanza("stanza a est"));
+//		this.stanzatest.impostaStanzaAdiacente(Direzione.OVEST, new Stanza("stanza a ovest"));
+//		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
+//		this.stanzatest.impostaStanzaAdiacente("DIREZIONE IN ECCESSO", new Stanza("stanza di troppo"));
+//		assertEquals(4, this.stanzatest.getNumeroStanzeAdiacenti());
+//		assertFalse(this.stanzatest.getDirezioni().contains("DIREZIONE IN ECCESSO"));
+//	}
 	@Test
 	public void testGetStanzaAdiacenteNessunaStanzaAdiacente() {
-		assertNull(this.stanzatest.getStanzaAdiacente(NORD));
+		assertNull(this.stanzatest.getStanzaAdiacente(Direzione.NORD));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteEsisteStanzaAdiacente() {
-		this.stanzatest.impostaStanzaAdiacente(NORD, stanzaAdiacente);
-		assertSame(stanzaAdiacente, this.stanzatest.getStanzaAdiacente(NORD)); 
+		this.stanzatest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacente);
+		assertSame(stanzaAdiacente, this.stanzatest.getStanzaAdiacente(Direzione.NORD)); 
 	}
 
 	@Test

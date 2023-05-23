@@ -25,6 +25,9 @@ public class StanzaMagica extends Stanza {
 		attrezzo = new Attrezzo(nomeInvertito.toString(), pesoRaddoppiato);
 		return attrezzo;
 	}
+	public void setSoglia(int soglia) {
+		this.sogliaMagica = soglia;
+	}
 	@Override
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		contatoreAttrezziPosati++;

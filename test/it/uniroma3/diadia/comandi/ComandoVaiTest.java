@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.IOconsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
@@ -24,7 +25,7 @@ public class ComandoVaiTest {
 		stanzaCorrenteTest = new Stanza("stanzaTest");
 		stanzaAdiacenteTest = new Stanza("stanzaAdiacenteTest");
 		
-		stanzaCorrenteTest.impostaStanzaAdiacente(NORD, stanzaAdiacenteTest);
+		stanzaCorrenteTest.impostaStanzaAdiacente(Direzione.NORD, stanzaAdiacenteTest);
 		partita.setStanzaCorrente(stanzaCorrenteTest);
 	}
 	@Test
@@ -50,10 +51,10 @@ public class ComandoVaiTest {
 				.addStanzaIniziale("Stanza iniziale")
 				.addStanzaVincente("Stanza finale")
 				.addStanza("Stanza adiacente")
-				.addAdiacenza("Stanza iniziale", "Stanza adiacente", "est")
-				.addAdiacenza("Stanza adiacente", "Stanza iniziale", "ovest")
-				.addAdiacenza("Stanza iniziale", "Stanza finale", "nord")
-				.addAdiacenza("Stanza finale", "Stanza iniziale", "sud")
+				.addAdiacenza("Stanza iniziale", "Stanza adiacente", Direzione.EST)
+				.addAdiacenza("Stanza adiacente", "Stanza iniziale", Direzione.OVEST)
+				.addAdiacenza("Stanza iniziale", "Stanza finale", Direzione.NORD)
+				.addAdiacenza("Stanza finale", "Stanza iniziale", Direzione.SUD)
 				.getLabirinto();
 		this.partita = new Partita(new IOconsole(), labirinto);
 		vaiTest.setParametro("est");

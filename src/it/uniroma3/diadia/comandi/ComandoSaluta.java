@@ -12,7 +12,7 @@ public class ComandoSaluta extends AbstractComando {
 			partita.getConsole().mostraMessaggio(MESSAGGIO_STANZA_VUOTA);
 		}
 		else {
-			personaggio.saluta();
+			partita.getConsole().mostraMessaggio(personaggio.saluta());
 		}
 	}
 

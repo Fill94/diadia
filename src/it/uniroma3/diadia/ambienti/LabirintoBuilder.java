@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class LabirintoBuilder {
@@ -62,7 +63,7 @@ public class LabirintoBuilder {
 	 * @param direzioneDiAdicenza
 	 * @return il LabirintoBuilder
 	 */
-	public LabirintoBuilder addAdiacenza(String stanzaAcuiAggiungereAdiacenza, String stanzaAdiacente, String direzioneDiAdicenza) {
+	public LabirintoBuilder addAdiacenza(String stanzaAcuiAggiungereAdiacenza, String stanzaAdiacente, Direzione direzioneDiAdicenza) {
 		Stanza stanza1 = this.nomi2Stanze.get(stanzaAcuiAggiungereAdiacenza);
 		Stanza stanza2 = this.nomi2Stanze.get(stanzaAdiacente);
 		stanza1.impostaStanzaAdiacente(direzioneDiAdicenza, stanza2);
@@ -84,7 +85,7 @@ public class LabirintoBuilder {
 		}
 		return this;
 	}
-	public LabirintoBuilder addStanzaBloccata(String nomeStanza, String nomeAttrezzoSbloccante, String direzioneBloccata) {
+	public LabirintoBuilder addStanzaBloccata(String nomeStanza, String nomeAttrezzoSbloccante, Direzione direzioneBloccata) {
 		if(!this.nomi2Stanze.containsKey(nomeStanza)) {
 			StanzaBloccata stanzaBloccata = new StanzaBloccata(nomeStanza, nomeAttrezzoSbloccante, direzioneBloccata);
 			nomi2Stanze.put(nomeStanza, stanzaBloccata);

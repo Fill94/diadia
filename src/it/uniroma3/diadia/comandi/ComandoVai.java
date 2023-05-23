@@ -1,11 +1,12 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.Direzione;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVai extends AbstractComando {
 	private final String NOME = "Vai";
-	private String direzione;
+	private Direzione direzione;
 
 	@Override
 	public void esegui(Partita partita) {
@@ -29,7 +30,13 @@ public class ComandoVai extends AbstractComando {
 	}
 	@Override
 	public void setParametro(String direzione) {
-		this.direzione = direzione;
+		try {
+			String direzioneUpperCase = direzione.toUpperCase();
+			this.direzione = Enum.valueOf(Direzione.class, direzioneUpperCase);	
+		}
+		catch (IllegalArgumentException e) {
+			this.direzione = null;
+		}
 	}
 	@Override
 	public String getNome() {
@@ -39,7 +46,7 @@ public class ComandoVai extends AbstractComando {
 	@Override
 	public String getParametro() {
 		// TODO Auto-generated method stub
-		return this.direzione;
+		return this.direzione.toString();
 	}
 
 }

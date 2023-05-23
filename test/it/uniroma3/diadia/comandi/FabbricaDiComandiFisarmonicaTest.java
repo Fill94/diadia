@@ -22,7 +22,7 @@ public class FabbricaDiComandiFisarmonicaTest {
 	public void testCostruisciComandoVai() {
 		AbstractComando comando = this.factory.costruisciComando("vai sud");
 		assertEquals("Vai", comando.getNome());
-		assertEquals("sud", comando.getParametro());
+		assertEquals("SUD", comando.getParametro());
 	}
 	@Test
 	public void testCostruisciComandoPrendi() {

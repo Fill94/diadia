@@ -24,7 +24,7 @@ public class StanzaBuiaTest {
 	public void testGetDescrizioneConAttrezzo() {
 		buiaTest.addAttrezzo(attrezzoIlluminante);
 		assertEquals("\nDESCRIZIONE STANZA :"+"\nNome: "+buiaTest.getNome() + "\nUscite: " + "\nAttrezzi nella stanza: " + 
-					attrezzoIlluminante.toString() + " ", this.buiaTest.getDescrizione());
+					attrezzoIlluminante.toString() + " \nPersonaggio nella stanza: ", this.buiaTest.getDescrizione());
 	}
 
 }

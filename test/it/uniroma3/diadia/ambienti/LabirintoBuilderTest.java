@@ -7,6 +7,8 @@ import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Direzione;
+
 public class LabirintoBuilderTest {
 	private LabirintoBuilder labirintoBuilder;
 	private String nomeStanzaIniziale;
@@ -57,13 +59,13 @@ public class LabirintoBuilderTest {
 		Labirinto bilocale = this.labirintoBuilder
 				.addStanzaIniziale(nomeStanzaIniziale)
 				.addStanzaVincente(nomeStanzaFinale)
-				.addAdiacenza(nomeStanzaIniziale, nomeStanzaFinale, "nord")
-				.addAdiacenza(nomeStanzaFinale, nomeStanzaIniziale, "sud")
+				.addAdiacenza(nomeStanzaIniziale, nomeStanzaFinale, Direzione.NORD)
+				.addAdiacenza(nomeStanzaFinale, nomeStanzaIniziale, Direzione.SUD)
 				.getLabirinto();
 		assertEquals(2, this.labirintoBuilder.listaStanze().size());
-		assertEquals(bilocale.getStanzaVincente(), bilocale.getStanzaIniziale().getStanzaAdiacente("nord"));
-		assertEquals(Collections.singleton("nord"), bilocale.getStanzaIniziale().getDirezioni());
-		assertEquals(Collections.singleton("sud"), bilocale.getStanzaVincente().getDirezioni());
+		assertEquals(bilocale.getStanzaVincente(), bilocale.getStanzaIniziale().getStanzaAdiacente(Direzione.NORD));
+		assertEquals(Collections.singleton(Direzione.NORD), bilocale.getStanzaIniziale().getDirezioni());
+		assertEquals(Collections.singleton(Direzione.SUD), bilocale.getStanzaVincente().getDirezioni());
 	}
 	@Test
 	public void testTrilocale() {
@@ -71,10 +73,10 @@ public class LabirintoBuilderTest {
 		.addStanzaIniziale(nomeStanzaIniziale)
 		.addStanza("stanzaCasuale")
 		.addStanzaVincente(nomeStanzaFinale)
-		.addAdiacenza(nomeStanzaIniziale, "stanzaCasuale", "nord")
-		.addAdiacenza("stanzaCasuale", nomeStanzaIniziale, "sud")
-		.addAdiacenza("stanzaCasuale", nomeStanzaFinale, "nord")
-		.addAdiacenza(nomeStanzaFinale, "stanzaCasuale", "sud")
+		.addAdiacenza(nomeStanzaIniziale, "stanzaCasuale", Direzione.NORD)
+		.addAdiacenza("stanzaCasuale", nomeStanzaIniziale, Direzione.SUD)
+		.addAdiacenza("stanzaCasuale", nomeStanzaFinale, Direzione.NORD)
+		.addAdiacenza(nomeStanzaFinale, "stanzaCasuale", Direzione.SUD)
 		.getLabirinto();
 		assertEquals(3, this.labirintoBuilder.listaStanze().size());
 	}
@@ -88,27 +90,27 @@ public class LabirintoBuilderTest {
 		.getLabirinto();
 		assertEquals(3, this.labirintoBuilder.listaStanze().size());
 	}
-	@Test
-	public void testAddAdiacenzaOltreIlMaxNumeroDiDirezioni() {
-		this.labirintoBuilder
-			.addStanza(nomeStanzaIniziale)
-			.addStanza("stanzaAnord")
-			.addAdiacenza(nomeStanzaIniziale, "stanzaAnord", "nord")
-			.addAdiacenza("stanzaAnord", nomeStanzaIniziale, "sud")
-			.addStanza("stanzaAest")
-			.addAdiacenza(nomeStanzaIniziale, "stanzaAest", "est")
-			.addAdiacenza("stanzaAest", nomeStanzaIniziale, "ovest")
-			.addStanza("stanzaAovest")
-			.addAdiacenza(nomeStanzaIniziale, "stanzaAovest", "ovest")
-			.addAdiacenza("stanzaAovest", nomeStanzaIniziale, "est")
-			.addStanza(nomeStanzaFinale)
-			.addAdiacenza(nomeStanzaIniziale, nomeStanzaFinale, "sud")
-			.addAdiacenza(nomeStanzaFinale, nomeStanzaIniziale, "nord");
-		assertEquals(5, this.labirintoBuilder.listaStanze().size());
-		assertEquals(4, this.labirintoBuilder.getLabirinto().getStanzaIniziale().getDirezioni().size());
-		this.labirintoBuilder.addStanza("stanzaAnordEst").addAdiacenza(nomeStanzaIniziale, "stanzaAnordEst", "nordEst");
-		assertEquals(6, this.labirintoBuilder.listaStanze().size());
-		assertEquals(4, this.labirintoBuilder.getLabirinto().getStanzaIniziale().getDirezioni().size());
-	}
+//	@Test
+//	public void testAddAdiacenzaOltreIlMaxNumeroDiDirezioni() {
+//		this.labirintoBuilder
+//			.addStanza(nomeStanzaIniziale)
+//			.addStanza("stanzaAnord")
+//			.addAdiacenza(nomeStanzaIniziale, "stanzaAnord", "nord")
+//			.addAdiacenza("stanzaAnord", nomeStanzaIniziale, "sud")
+//			.addStanza("stanzaAest")
+//			.addAdiacenza(nomeStanzaIniziale, "stanzaAest", "est")
+//			.addAdiacenza("stanzaAest", nomeStanzaIniziale, "ovest")
+//			.addStanza("stanzaAovest")
+//			.addAdiacenza(nomeStanzaIniziale, "stanzaAovest", "ovest")
+//			.addAdiacenza("stanzaAovest", nomeStanzaIniziale, "est")
+//			.addStanza(nomeStanzaFinale)
+//			.addAdiacenza(nomeStanzaIniziale, nomeStanzaFinale, "sud")
+//			.addAdiacenza(nomeStanzaFinale, nomeStanzaIniziale, "nord");
+//		assertEquals(5, this.labirintoBuilder.listaStanze().size());
+//		assertEquals(4, this.labirintoBuilder.getLabirinto().getStanzaIniziale().getDirezioni().size());
+//		this.labirintoBuilder.addStanza("stanzaAnordEst").addAdiacenza(nomeStanzaIniziale, "stanzaAnordEst", "nordEst");
+//		assertEquals(6, this.labirintoBuilder.listaStanze().size());
+//		assertEquals(4, this.labirintoBuilder.getLabirinto().getStanzaIniziale().getDirezioni().size());
+//	}
 	
 }
