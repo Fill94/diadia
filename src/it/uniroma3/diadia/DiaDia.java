@@ -75,7 +75,8 @@ public class DiaDia {
 	public static void main(String[] argc) throws FileNotFoundException, FormatoFileNonValidoException{
 		IO console = new IOconsole();
 		//DiaDia gioco = new DiaDia(console);
-		Labirinto labirinto = new Labirinto("labirinto5.txt");
+		//Labirinto labirinto = new Labirinto("labirinto5.txt");
+		Labirinto labirinto = Labirinto.newBuilder("labirinto5.txt").getLabirinto();
 		DiaDia gioco = new DiaDia(console, labirinto);
 		gioco.gioca();
 	}
