@@ -1,11 +1,10 @@
 package it.uniroma3.diadia;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.comandi.AbstractComando;
-import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
 /**
@@ -31,7 +30,7 @@ public class DiaDia {
 			"puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n" +
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
-	
+
 	private Partita partita;
 	private IO console;
 	public DiaDia(IO console) {
@@ -58,9 +57,9 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	//anzichè far tornare true o false cedo la responsabilità di decidere se la partita è finita al metodo Partita.isFInita
- 
+
 	private boolean processaIstruzione(String istruzione) {
-//		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		//		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
 		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		AbstractComando comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(partita);
@@ -73,11 +72,13 @@ public class DiaDia {
 
 
 	public static void main(String[] argc) throws FileNotFoundException, FormatoFileNonValidoException{
-		IO console = new IOconsole();
-		//DiaDia gioco = new DiaDia(console);
-		//Labirinto labirinto = new Labirinto("labirinto5.txt");
-		Labirinto labirinto = Labirinto.newBuilder("labirinto5.txt").getLabirinto();
-		DiaDia gioco = new DiaDia(console, labirinto);
-		gioco.gioca();
+		try(Scanner scannerStdIn = new Scanner(System.in)){
+			IO console = new IOconsole(scannerStdIn);
+			//DiaDia gioco = new DiaDia(console);
+			//Labirinto labirinto = new Labirinto("labirinto5.txt");
+			Labirinto labirinto = Labirinto.newBuilder("labirinto5.txt").getLabirinto();
+			DiaDia gioco = new DiaDia(console, labirinto);
+			gioco.gioca();
+		}
 	}
 }

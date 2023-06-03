@@ -2,6 +2,8 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +23,7 @@ public class ComandoVaiTest {
 	@Before
 	public void setUp() throws Exception {
 		vaiTest = new ComandoVai();
-		partita = new Partita(new IOconsole());
+		partita = new Partita(new IOconsole(new Scanner(System.in)));
 		stanzaCorrenteTest = new Stanza("stanzaTest");
 		stanzaAdiacenteTest = new Stanza("stanzaAdiacenteTest");
 		
@@ -56,7 +58,7 @@ public class ComandoVaiTest {
 				.addAdiacenza("Stanza iniziale", "Stanza finale", Direzione.NORD)
 				.addAdiacenza("Stanza finale", "Stanza iniziale", Direzione.SUD)
 				.getLabirinto();
-		this.partita = new Partita(new IOconsole(), labirinto);
+		this.partita = new Partita(new IOconsole(new Scanner(System.in)), labirinto);
 		vaiTest.setParametro("est");
 		vaiTest.esegui(partita);
 		assertEquals(new Stanza("Stanza adiacente") , this.partita.getStanzaCorrente());

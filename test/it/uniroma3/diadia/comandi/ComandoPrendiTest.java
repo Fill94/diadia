@@ -2,6 +2,8 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +27,7 @@ public class ComandoPrendiTest {
 		giocatoreTest = new Giocatore();
 		attrezzoTest = new Attrezzo(NOME_ATTREZZO, 1);
 		stanzaTest = new Stanza("stanzaTest");
-		partitaTest = new Partita(new IOconsole());
+		partitaTest = new Partita(new IOconsole(new Scanner(System.in)));
 		
 		stanzaTest.addAttrezzo(attrezzoTest);
 		partitaTest.setStanzaCorrente(stanzaTest);

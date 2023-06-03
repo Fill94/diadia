@@ -2,6 +2,8 @@ package it.uniroma3.diadia.personaggi;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +35,7 @@ public class StregaTest {
 				.addAdiacenza(stanzaIniziale, stanzaFinale, Direzione.EST)
 				.addAdiacenza(stanzaFinale, stanzaCasuale, Direzione.OVEST)
 				.getLabirinto();
-		this.partitaTest = new Partita(new IOconsole(), labirintoTest);
+		this.partitaTest = new Partita(new IOconsole(new Scanner(System.in)), labirintoTest);
 		this.stregaTest = new Strega("Strega", "sono una strega cattiva");
 	}
 	

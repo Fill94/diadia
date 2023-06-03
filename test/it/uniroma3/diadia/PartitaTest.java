@@ -2,6 +2,8 @@ package it.uniroma3.diadia;
 
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ public class PartitaTest {
 	private Stanza stanzaTest;
 	@Before 
 	public void setUp() {
-		this.partitaTest = new Partita(new IOconsole());
+		this.partitaTest = new Partita(new IOconsole(new Scanner(System.in)));
 		this.stanzaTest = new Stanza("stanzaTest");
 	}
 	@Test

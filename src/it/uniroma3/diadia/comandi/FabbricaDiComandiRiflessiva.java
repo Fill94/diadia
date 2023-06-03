@@ -24,6 +24,8 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi{
 			comando.setParametro(parametro);
 		} catch (Exception e) {
 			comando = new ComandoNonValido();
+		}finally {
+			scannerDiPraole.close();
 		}
 		return comando;
 	}
